@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <style type="text/css">
+        body,html{
+            height: 100%;
+        }
+        #nav{
+            width: 100%;
+            height: 100px;
+            background-color: darkturquoise;
+        }
+        #content{
+            height: 500px;
+            width: 100%;
+            margin-top: 1%;
+        }
+        #content #b1{
+             width: 20%;
+             height: 500px;
+             background-color: #2c3e50;
+            float: left;
+         }
+        #content #b2{
+            width: 58%;
+            height: 500px;
+            float: left;
+            margin: 0 1% 0 1%;
+        }
+        #content #b2-top{
+            width: 100%;
+            height: 240px;
+            background-color: brown;
+        }
+        #content #b2-bot{
+            width: 100%;
+            height: 240px;
+            background-color: darkturquoise;
+            margin-top: 1%;
+        }
+        #content #b3{
+            width: 20%;
+            height: 500px;
+            background-color:powderblue;
+            float: right;
+        }
+        #footer{
+            height: 200px;
+            width: 100%;
+            margin-top: 1%;
+        }
+        #footer #left{
+            width: 20%;
+            height: 200px;
+            background-color: #486887;
+            float: left;
+        }
+        #footer #right{
+            width: 80%;
+            height: 200px;
+            float: right;
+        }
+    </style>
+    <!-- Bootstrap -->
+    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<!--垂直三个盒子，分别是nav，content，footer-->
+<!--content里面横向三个盒子，b1,b2,b3，其中b2里面垂直两个盒子，分别是b2-top,b2-bot-->
+<!--footer里面横向两个盒子，left和right-->
+<div id="nav">
+    <nav class="navbar navbar-default navbar-fixed-top opacity:100">
+        <div class="container" style="padding: 10px">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">耀龙的个人博客</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav ">
+                    <li class="active"><a href="#">首页</a></li>
+                    <li><a href="#about">留言</a></li>
+                    <li><a href="#about">关于</a></li>
+                    <li><a href="#contact">娱乐</a></li>
+                    <li><a href="#contact">归档</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分类 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">友情链接</a></li>
+                    <li><a href="#">联系</a></li>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="请输入搜索的内容">
+                        </div>
+                        <button type="submit" class="btn btn-default">搜索</button>
+                    </form>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+</div>
+
+<div id="content">
+    <div id="b1"></div>
+    <div id="b2">
+        <div id="b2-top"></div>
+        <div id="b2-bot"></div>
+    </div>
+<div id="b3"></div>
+</div>
+
+<div id="footer">
+    <div id="left"></div>
+    <div id="right"></div>
+</div>
+<script src="../static/jquery/jquery-3.4.1.min.js"></script>
+<script src="../static/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
