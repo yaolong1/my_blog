@@ -6,63 +6,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
     <style type="text/css">
-        body,html{
+        body, html {
             height: 100%;
         }
-        #nav{
+
+        #nav {
             width: 100%;
             height: 100px;
-            background-color: darkturquoise;
+            background-color: rgba(0, 206, 209, 0);
         }
-        #content{
+
+        #content {
             height: 500px;
             width: 100%;
             margin-top: 1%;
         }
-        #content #b1{
-             width: 20%;
-             height: 500px;
-             background-color: #2c3e50;
+
+        #content #b1 {
+            width: 20%;
+            height: 500px;
+            background-color: #2c3e50;
             float: left;
-         }
-        #content #b2{
+        }
+
+        #content #b2 {
             width: 58%;
             height: 500px;
             float: left;
             margin: 0 1% 0 1%;
         }
-        #content #b2-top{
+
+        #content #b2-top {
             width: 100%;
-            height: 240px;
-            background-color: brown;
+            height: 400px;
+            background-color: rgba(255, 67, 67, 0);
         }
-        #content #b2-bot{
+
+        #content #b2-bot {
             width: 100%;
             height: 240px;
-            background-color: darkturquoise;
+            background-color: rgba(0, 252, 255, 0);
             margin-top: 1%;
         }
-        #content #b3{
+
+        #content #b3 {
             width: 20%;
             height: 500px;
-            background-color:powderblue;
+            background-color: powderblue;
             float: right;
         }
-        #footer{
+
+        #footer {
             height: 200px;
             width: 100%;
             margin-top: 1%;
         }
-        #footer #left{
+
+        #footer #left {
             width: 20%;
             height: 200px;
             background-color: #486887;
             float: left;
         }
-        #footer #right{
+
+        #footer #right {
             width: 80%;
             height: 200px;
             float: right;
+        }
+        .logo {
+            padding:0;
+        }
+        #myCarousel {
+            margin: 50px 0 0 0;
+        }
+        #navbar-collapse ul {
+            margin-top:0;
+        }
+        .carousel-inner img{
+            margin: 0 auto;
+        }
+        .carousel-control{
+            font-size: 100px;
+
         }
     </style>
     <!-- Bootstrap -->
@@ -76,7 +102,8 @@
     <nav class="navbar navbar-default navbar-fixed-top opacity:100">
         <div class="container" style="padding: 10px">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -92,7 +119,8 @@
                     <li><a href="#contact">娱乐</a></li>
                     <li><a href="#contact">归档</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分类 <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">分类 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Action</a></li>
                             <li><a href="#">Another action</a></li>
@@ -113,6 +141,7 @@
                         </div>
                         <button type="submit" class="btn btn-default">搜索</button>
                     </form>
+                    <li><a href="#">写博客</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -122,10 +151,58 @@
 <div id="content">
     <div id="b1"></div>
     <div id="b2">
-        <div id="b2-top"></div>
-        <div id="b2-bot"></div>
+        <div id="b2-top">
+            <div id="myCarousel" class="carousel slide">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active" style="background:rgba(135,200,255,0);">
+                        <img src="../image/04.jpg" alt="第一张"/>
+                    </div>
+                    <div class="item" style="background:rgba(255,240,233,0);">
+                        <img src="../image/04.jpg" alt="第二张"/>
+                    </div>
+                    <div class="item" style="background:rgba(255,46,49,0);">
+                        <img src="../image/04.jpg" alt="第三张"/>
+                    </div>
+
+                </div>
+
+                <a href="#myCarousel" data-slide="prev" class="carousel-control left">
+                    <span class="glyphicon glyphicon-chevron-left"> </span>
+                </a>
+                <a href="#myCarousel" data-slide="next" class="carousel-control right">
+                    <span class="glyphicon glyphicon-chevron-right"> </span>
+                </a>
+            </div>
+        </div>
+        <div id="b2-bot">
+            <div class="panel panel-default">
+                <div class="panel-heading">标题</div>
+                <div class="panel-body">
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#">
+                                <img class="media-object" src="..." alt="...">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Media heading</h4>
+                            <article>
+                                <a href="http://www.apple.com">Safari 5 released</a><br />
+                                7 Jun 2010. Just after the announcement of the new iPhone 4 at WWDC,
+                                Apple announced the release of Safari 5 for Windows and Mac......
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-<div id="b3"></div>
+    <div id="b3"></div>
 </div>
 
 <div id="footer">

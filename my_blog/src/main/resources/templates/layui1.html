@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
+</head>
+<body>
+<textarea id="demo" style="display: none;"></textarea>
+<br>
+<a href="images/get">获得</a>
+
+
+
+
+<script src="../static/layui/layui.js"></script>
+<script>
+    //一般直接写在一个js文件中
+    layui.use(['layer', 'form','layedit'], function(){
+        var layer = layui.layer
+            ,form = layui.form;
+
+        // layer.msg('Hello World');
+
+
+        var layedit = layui.layedit;
+        layedit.set({
+            uploadImage: {
+                url: '/images/save' //接口url
+                ,type: 'post' //默认post
+            }
+        });
+        layedit.build('demo'); //建立编辑器
+    });
+</script>
+</body>
+</html>
