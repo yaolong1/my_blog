@@ -6,54 +6,33 @@
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
 </head>
 <body>
-<form class="layui-form"  method="post" id="myForm" enctype="multipart/form-data">   
+<form class="layui-form"  method="post" id="content1" enctype="multipart/form-data">
     <div class="layui-form-item layui-form-text">
-         <label class="layui-form-label">内容</label>   
+        <label class="layui-form-label">内容</label>
         <div class="layui-input-block">
-            <textarea class="layui-textarea layui-hide policy_content" placeholder="请输入资质范围" name="policy_content" lay-verify="content" id="policy_content">
-            </textarea>       
-        </div>   
+            <textarea class="layui-textarea layui-hide" name="file" lay-verify="content" id="content"></textarea>
+        </div>
     </div>
 </form>
 
+<!--<form action="images/save" method="post" enctype="multipart/form-data">-->
+    <!--<label>上传图片</label>-->
+    <!--<input type="file" name="file"/>-->
+    <!--<input type="submit" value="上传"/>-->
+<!--</form>-->
 <br>
 <a href="images/get">获得</a>
-
+<a href="index">我的博客</a>
 
 
 
 <script th:src="@{/layui/layui.js}"></script>
 <script>
-    // //一般直接写在一个js文件中
-    // layui.use(['layer', 'form','layedit'], function(){
-    //     var layer = layui.layer
-    //         ,form = layui.form;
-    //
-    //     // layer.msg('Hello World');
-    //
-    //
-    //     var layedit = layui.layedit;
-    //     layedit.set({
-    //         uploadImage: {
-    //             url: 'images/save' //接口url
-    //             ,type: 'post' //默认post
-    //         }
-    //     });
-    //     layedit.build('demo'); //建立编辑器
-    // });
-
-    var $;
-    layui.config({
-        base : "js/"
-    }).use(['form','layer','jquery','laypage','laydate','element','layedit'],function(){
-        var form = layui.form(),
-            layer = parent.layer === undefined ? layui.layer : parent.layer,
-            layedit=layui.layedit,
-            laypage = layui.laypage,
-            element = layui.element,
-            laydate = layui.laydate,
-            $ = layui.jquery;
-        $(".lookContent").hide();
+    layui.use(['form', 'layedit', 'laydate'], function() {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
         //上传图片,必须放在 创建一个编辑器前面
         layedit.set({
             uploadImage: {
@@ -62,9 +41,12 @@
 
             }
         });
-        //创建一个富文本编辑框
-
-        var index=layedit.build("policy_content")
+        //创建一个编辑器
+        var editIndex = layedit.build('content',{
+                height:400
+            }
+        );
+    });
 </script>
 </body>
 </html>

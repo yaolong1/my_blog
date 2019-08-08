@@ -9,11 +9,12 @@ spring:
   mvc:
     static-path-pattern: /**
   resources:
-    static-locations: classpath:/static/
+    static-locations: classpath:/static/,file:C:/pig/,classpath:/
   servlet:
     multipart:
-      max-file-size: 10
-      max-request-size: 10
+      max-file-size: 10MB
+      max-request-size: 10MB
+      enabled: true
 
   thymeleaf:
     prefix: classpath:/templates/

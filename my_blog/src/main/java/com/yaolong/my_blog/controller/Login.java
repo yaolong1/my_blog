@@ -14,5 +14,25 @@ public class Login {
     public String Home(){
         return "thymeleaf/layui1";
     }
-
+    @RequestMapping("/index")
+    public String index(){
+        return "myblog/index";
+    }
+    @RequestMapping("/about")
+    public String about(){
+        return "myblog/about";
+    }
+    @RequestMapping("/blog")
+    public String blog(){
+        return "myblog/blog";
+    }
+    @RequestMapping("/contact")
+    public String contact(){
+        return "myblog/contact";
+    }
+    @RequestMapping("/support")
+    public String support(){
+        return "myblog/support";
+    }
 }
+

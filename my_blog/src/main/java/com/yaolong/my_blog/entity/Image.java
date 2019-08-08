@@ -9,5 +9,5 @@ import lombok.Data;
 @Data
 public class Image {
     private String path;
-    private String id;
+    private String filename;
 }

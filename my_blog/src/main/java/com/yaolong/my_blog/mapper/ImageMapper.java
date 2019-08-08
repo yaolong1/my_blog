@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Repository
 public interface ImageMapper {
-    @Insert("insert into image values(#{id},#{path}) ")
+    @Insert("insert into image values(#{filename},#{path}) ")
     public void savePath(Image image);
     @Select("select * from image")
     public List<Image> getPath();

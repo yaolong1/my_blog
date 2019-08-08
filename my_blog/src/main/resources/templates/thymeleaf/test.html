@@ -11,15 +11,13 @@
 
 </head>
 <body>
-
-
-<div class="panel panel-default" th:each="images : ${images}">
+<div class="panel panel-default" th:each="m:${img}">
     <div class="panel-heading">标题</div>
     <div class="panel-body">
         <div class="media">
             <div class="media-left">
                 <a href="#">
-                    <img class="media-object" th:src="${images.path}"  alt="...">
+                    <img class="media-object" th:src="${m.path}"  alt="...">
                 </a>
             </div>
             <div class="media-body">
@@ -35,6 +33,6 @@
 </div>
 
 <script th:src="@{/jquery/jquery-3.4.1.min.js}"></script>
-<script th:src="@{/static/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>

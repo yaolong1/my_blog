@@ -25,9 +25,9 @@ public class UploadController {
 
     @PostMapping("/save")
     @ResponseBody
-    public void savePath(Image image,@RequestParam("upload")MultipartFile upload) {
+    public void savePath(Image image,@RequestParam( "file")MultipartFile upload) {
         // 先获取到要上传的文件目录
-        String path ="/Users/Yaolong/Desktop/image/";
+        String path ="C:/pig/";
         // 创建File对象，一会向该路径下上传文件
         File file = new File(path);
         // 判断路径是否存在，如果不存在，创建该路径
@@ -40,12 +40,13 @@ public class UploadController {
         String uuid = UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
         // 把文件的名称唯一化
          filename = uuid+"_"+filename;
+        System.out.println(file+filename);
          // 上传文件
         try {
-            upload.transferTo(new File(file+filename));
+            upload.transferTo(new File(path+filename));
             image = new Image();
-            image.setId(filename);
-            image.setPath(file+filename);
+            image.setFilename(filename);
+            image.setPath("/pig/"+filename);
             imageService.savePath(image);
             System.out.println("文件上传成功！");
         } catch (IOException e) {
@@ -57,13 +58,8 @@ public class UploadController {
     @GetMapping("/get")
     public String getPath(Model mode){
         List<Image> images = imageService.getPath();
-        mode.addAttribute("images",images);
-//        for (int i =0 ;i<images.size();i++){
-//            Image image = images.get(i);
-//
-//        }
+        mode.addAttribute("img",images);
         return "/thymeleaf/test";
     }
 
-
-}
+    }
