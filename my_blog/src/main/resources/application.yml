@@ -9,15 +9,20 @@ spring:
   mvc:
     static-path-pattern: /**
   resources:
-    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/
+    static-locations: classpath:/static/
   servlet:
     multipart:
       max-file-size: 10
       max-request-size: 10
 
   thymeleaf:
-    prefix: templates/
+    prefix: classpath:/templates/
     suffix: .html
+    mode: HTML5
+    encoding: utf-8
+    servlet:
+      content-type: text/html
+    cache: false
 mybatis:
   type-aliases-package: com.yaolong.my_blog.entity
   configuration:

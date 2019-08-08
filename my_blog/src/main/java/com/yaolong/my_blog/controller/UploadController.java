@@ -56,12 +56,14 @@ public class UploadController {
 
     @GetMapping("/get")
     public String getPath(Model mode){
-//        List<Image> images = imageService.getPath();
-//        mode.addAttribute("images",images);
+        List<Image> images = imageService.getPath();
+        mode.addAttribute("images",images);
 //        for (int i =0 ;i<images.size();i++){
 //            Image image = images.get(i);
 //
 //        }
-        return "test";
+        return "/thymeleaf/test";
     }
+
+
 }
