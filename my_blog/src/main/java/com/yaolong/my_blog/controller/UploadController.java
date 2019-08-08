@@ -59,7 +59,8 @@ public class UploadController {
     public String getPath(Model mode){
         List<Image> images = imageService.getPath();
         mode.addAttribute("img",images);
-        return "/thymeleaf/test";
+//        return "/thymeleaf/test";
+        return "/myblog/index.html";
     }
 
     }
