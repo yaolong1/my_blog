@@ -40,14 +40,12 @@ Released for free under a Creative Commons Attribution 3.0 License
   <div class="content">
     <div class="content_resize">
       <div class="mainbar">
-        <div class="article" th:each="m:${img}">
-          <h2>Template License</h2><div class="clr"></div>
-          <p><span class="date">March 16, 2018</span> &nbsp;|&nbsp Posted by <a href="#">Owner</a> &nbsp;|&nbsp; Filed under <a href="#">templates</a>, <a href="#">internet</a></p>
+        <div class="article" th:each="m:${content}">
+          <h2 th:text="${m.title}"></h2><div class="clr"></div>
+          <p>发布时间<span class="date" th:text="${m.date}"></span> &nbsp;|&nbsp 发布人 <a href="#" th:text="${m.user_name}"></a>&nbsp;|&nbsp; 分类 <span th:text="${m.variety}"/></p> <!--&nbsp;|&nbsp; 分类 <a href="#">templates</a>, <a href="#">internet</a></p>-->
           <img th:src="${m.path}" width="263" height="146" alt="image" class="fl" />
-          <p>This is a free CSS website template by <a href="http://www.freewebsitetemplatez.com/" title="cssMoban.com">FreeWebsiteTemplateZ.com</a>. This 
-work is distributed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, 
-which means that you are free to use it for any personal or commercial purpose provided you credit me in the form of a link back to <a href="http://www.freewebsitetemplatez.com/" title="cssMoban.com">FreeWebsiteTemplateZ.com</a>.</p>
-          <p class="spec"><a href="#" class="rm">阅读更多100000</a> <a href="#" class="com">评论(1000) </a></p>
+          <p th:text="${m.content}"></p>
+          <p class="spec"><a href="#" class="rm" th:text="|喜欢(${(1)})|"/>  <a href="#" class="rm">阅读更多</a> <a href="#" class="com" th:text="|评论(${(100)})|" ></a> <a href="#" class="com" th:text="|浏览量${(100)}|" ></a></p>
         </div>
         <!--<div class="article">-->
           <!--<h2><span>Lorem Ipsum</span> Dolor Sit</h2><div class="clr"></div>-->
