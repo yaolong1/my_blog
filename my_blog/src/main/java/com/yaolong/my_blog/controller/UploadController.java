@@ -1,9 +1,7 @@
 package com.yaolong.my_blog.controller;
 
-
-import com.yaolong.my_blog.entity.PushContent;
-
-import com.yaolong.my_blog.service.PushContentService;
+import com.yaolong.my_blog.entity.Image;
+import com.yaolong.my_blog.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,25 +10,22 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * @author yaoLong
  * @date 2019/8/7  15:34
  */
 @Controller
-@RequestMapping("/pushContent")
+@RequestMapping("/images")
 public class UploadController {
     @Autowired
-    PushContentService contentService;
+    ImageService imageService;
 
-    @PostMapping(value = "/save",produces = "application/json;charset=utf-8")
+    @PostMapping("/save")
     @ResponseBody
-    public Map<String, Object> savePath(PushContent content, @RequestParam( "file")MultipartFile upload) {
-        Map<String, Object> res = new HashMap<>();
-        Map<String,Object> res2 = new HashMap();
-        System.out.println(content);
+    public void savePath(Image image,@RequestParam( "file")MultipartFile upload) {
         // 先获取到要上传的文件目录
         String path ="C:/pig/";
         // 创建File对象，一会向该路径下上传文件
@@ -49,29 +44,23 @@ public class UploadController {
          // 上传文件
         try {
             upload.transferTo(new File(path+filename));
-            content.setFile_name(filename);
-            content.setPath("/pig/"+filename);
-            content.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-            contentService.savePushArticleDate(content);
-            res.put("code", 0);
-            res.put("data",res2);
-            res2.put("src","/pig/"+filename);
-            res2.put("title",filename);
-            return res;
+            image = new Image();
+            image.setFilename(filename);
+            image.setPath("/pig/"+filename);
+            imageService.savePath(image);
+            System.out.println("文件上传成功！");
         } catch (IOException e) {
             e.printStackTrace();
-            res.put("code", -1);
-            res.put("msg", "上传失败");
-            return res;
+            System.out.println("文件上传失败！");
         }
     }
 
     @GetMapping("/get")
-    public String getPushArticleDate(Model mode){
-        List<PushContent> contents = contentService.getPushArticleDate();
-        mode.addAttribute("content",contents);
+    public String getPath(Model mode){
+        List<Image> images = imageService.getPath();
+        mode.addAttribute("img",images);
 //        return "/thymeleaf/test";
-        return "myblog/index";
+        return "/myblog/index.html";
     }
 
     }
