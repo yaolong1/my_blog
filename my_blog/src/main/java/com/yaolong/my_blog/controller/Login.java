@@ -1,7 +1,9 @@
 package com.yaolong.my_blog.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
 
 /**
  * @Author: 殷跃龙
@@ -14,25 +16,12 @@ public class Login {
     public String Home(){
         return "thymeleaf/layui1";
     }
-    @RequestMapping("/index")
-    public String index(){
-        return "myblog/index";
+    @RequestMapping(value="/login", method = RequestMethod.GET)
+        public String login(Model model){
+        return "redirect:pushContent/index";
     }
-    @RequestMapping("/about")
-    public String about(){
-        return "myblog/about";
-    }
-    @RequestMapping("/blog")
-    public String blog(){
-        return "myblog/blog";
-    }
-    @RequestMapping("/contact")
-    public String contact(){
-        return "myblog/contact";
-    }
-    @RequestMapping("/support")
-    public String support(){
-        return "myblog/support";
+    @RequestMapping("/register")
+    public String register(){
+        return "登录页面";
     }
 }
-

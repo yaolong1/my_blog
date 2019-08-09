@@ -1,7 +1,8 @@
 package com.yaolong.my_blog.controller;
 
-import com.yaolong.my_blog.entity.Image;
-import com.yaolong.my_blog.service.ImageService;
+import com.yaolong.my_blog.entity.PushContent;
+
+import com.yaolong.my_blog.service.PushContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,55 +13,83 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author yaoLong
  * @date 2019/8/7  15:34
  */
 @Controller
-@RequestMapping("/images")
+@RequestMapping("/pushContent")
 public class UploadController {
     @Autowired
-    ImageService imageService;
+    PushContentService contentService;
 
-    @PostMapping("/save")
+    @PostMapping(value = "/save",produces = "application/json;charset=utf-8")
     @ResponseBody
-    public void savePath(Image image,@RequestParam( "file")MultipartFile upload) {
-        // 先获取到要上传的文件目录
-        String path ="C:/pig/";
-        // 创建File对象，一会向该路径下上传文件
-        File file = new File(path);
-        // 判断路径是否存在，如果不存在，创建该路径
-        if (!file.exists()) {
-            file.mkdirs();
+        public Map<String, Object> savePath(PushContent content, @RequestParam( "file")MultipartFile upload) {
+            Map<String, Object> res = new HashMap();
+            Map<String,Object> res2 = new HashMap();
+            System.out.println(content);
+            // 先获取到要上传的文件目录
+            String path ="C:/pig/";
+            // 创建File对象，一会向该路径下上传文件
+            File file = new File(path);
+            // 判断路径是否存在，如果不存在，创建该路径
+            if (!file.exists()) {
+                file.mkdirs();
+            }
+            // 获取到上传文件的名称
+            String filename = upload.getOriginalFilename();
+            String uuid = UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
+            // 把文件的名称唯一化
+            filename = uuid+"_"+filename;
+            System.out.println(file+filename);
+            // 上传文件
+            try {
+
+                upload.transferTo(new File(path+filename));
+                content.setFile_name(filename);
+                content.setPath("/pig/"+filename);
+                content.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+                contentService.savePushArticleDate(content);
+                res.put("code", 0);
+                res.put("data",res2);
+                res2.put("src","/pig/"+filename);
+                return res;
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("文件上传失败！");
+                res.put("code", -1);
+                res.put("msg", "上传失败");
+                return res;
+            }
+
+
         }
-        // 获取到上传文件的名称
-
-        String filename = upload.getOriginalFilename();
-        String uuid = UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
-        // 把文件的名称唯一化
-         filename = uuid+"_"+filename;
-        System.out.println(file+filename);
-         // 上传文件
-        try {
-            upload.transferTo(new File(path+filename));
-            image = new Image();
-            image.setFilename(filename);
-            image.setPath("/pig/"+filename);
-            imageService.savePath(image);
-            System.out.println("文件上传成功！");
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("文件上传失败！");
+        @GetMapping("/index")
+        public String index(Model mode){
+            List<PushContent> contents = contentService.getPushArticleDate();
+            mode.addAttribute("content",contents);
+            return "myblog/index";
         }
+        @RequestMapping("/about")
+        public String about(){
+            return "myblog/about";
+        }
+        @RequestMapping("/blog")
+        public String blog(){
+            return "myblog/blog";
+        }
+        @RequestMapping("/contact")
+        public String contact(){
+            return "myblog/contact";
+        }
+        @RequestMapping("/support")
+        public String support(){
+        return "myblog/support";
     }
 
-    @GetMapping("/get")
-    public String getPath(Model mode){
-        List<Image> images = imageService.getPath();
-        mode.addAttribute("img",images);
-//        return "/thymeleaf/test";
-        return "/myblog/index.html";
-    }
 
-    }
+}
