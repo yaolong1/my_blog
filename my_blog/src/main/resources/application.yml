@@ -1,21 +1,28 @@
+#配置服务器端口
 server:
   port: 8080
+  #配置项目访问名
+  servlet:
+    context-path: /yaolong
 spring:
+  #配置数据库
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/image?serverTimezone=UTC
     username: root
     password: yin7372175240000
+    #配置静态资源访问
   mvc:
     static-path-pattern: /**
   resources:
     static-locations: classpath:/static/,file:C:/pig/,classpath:/
+    #配置上传文件
   servlet:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
       enabled: true
-
+    #配置模板引擎
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
@@ -24,11 +31,16 @@ spring:
     servlet:
       content-type: text/html
     cache: false
+ #配置国际化基础名
+  messages:
+    basename: i18n/login
+#配置mybatis
 mybatis:
   type-aliases-package: com.yaolong.my_blog.entity
   configuration:
-
     map-underscore-to-camel-case: true
+    #配置日志
 logging:
   level:
     com.example.springboot_cache.mapper: debug
+

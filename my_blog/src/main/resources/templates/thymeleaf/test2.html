@@ -1,10 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
 </head>
 <body>
+<nav>
+    <ul class="pagination">
+    </ul>
+</nav>
 
+
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript">
+
+    <!-- 动态获取我的思维导图的页数 -->
+    function getMyMindMapPage(currentPage){
+
+        var html="";
+        var lastPage;
+        var nextPage;
+        var showPage=4;      //每次显示的页数
+        var index;
+        var x;               //定义后面页数固定
+        var adata={"parentid":"00100"};
+        var data=JSON.stringify(adata);
+
+        $.ajax({
+            type:"post",
+            contentType:"application/json",
+            dataType:"json",
+            data:data,
+            url:"/pushContent/save",
+
+            success:function(data){
+                if(data==null){
+                    alert("获取失败");
+                }else{
+
+                    html+="<ul class='pagination'>";
+                    html+="<li><span οnclick='getMyMindMap(1)'>首页</span></li>";
+
+                    lastPage=currentPage;
+                    if(lastPage<=1){
+                        lastPage==1;
+                    }else{
+                        lastPage--;
+                    }
+
+                    html+="<li><span οnclick='getMyMindMap("+lastPage+")'>上一页</span></li>";
+
+                    if(data<=showPage){
+                        for(var i=1;i<=data;i++){
+                            html+="<li><span οnclick='getMyMindMap("+i+")'>"+i+"</span></li>";
+                        }
+                    }else{
+                        index=currentPage+showPage;
+                        x=currentPage;
+                        if(index>data){
+                            index=data+1;
+                            x=index-showPage;
+                        }
+
+                        for(var i=x;i<index;i++){
+                            html+="<li><span οnclick='getMyMindMap("+i+")'>"+i+"</span></li>";
+                        }
+                    }
+
+
+                    nextPage=currentPage;
+                    if(nextPage<data){
+                        nextPage++;
+                    }else if(nextPage==data){
+                        nextPage=data;
+                    }
+
+                    html+="<li><span οnclick='getMyMindMap("+nextPage+")'>下一页</span></li>";
+                    html+="<li><span οnclick='getMyMindMap("+data+")'>尾页</span></li>";
+                    html+="</ul>";
+                    $("#jsmind_container").append(html);
+
+                }
+
+            },
+
+            error:function(e){
+                alert("网络连接失败!");
+            },
+
+        });
+    }
+</script>
 </body>
 </html>

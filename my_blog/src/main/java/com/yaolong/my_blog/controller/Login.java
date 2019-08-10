@@ -12,16 +12,13 @@ import org.springframework.web.bind.annotation.*;
  */
 @Controller
 public class Login {
-    @RequestMapping("/")
-    public String Home(){
-        return "thymeleaf/layui1";
-    }
-    @RequestMapping(value="/login", method = RequestMethod.GET)
-        public String login(Model model){
-        return "redirect:pushContent/index";
-    }
     @RequestMapping("/register")
     public String register(){
         return "登录页面";
+    }
+
+    @RequestMapping("/text")
+    public String text(){
+        return "thymeleaf/test2";
     }
 }
