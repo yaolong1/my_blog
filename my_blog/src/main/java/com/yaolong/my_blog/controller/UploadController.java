@@ -51,7 +51,7 @@ public class UploadController {
 
                 upload.transferTo(new File(path+filename));
                 content.setFile_name(filename);
-                content.setPath("/pig/"+filename);
+                content.setPath("/yaolong/pig/"+filename);
                 content.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
                 contentService.savePushArticleDate(content);
                 res.put("code", 0);

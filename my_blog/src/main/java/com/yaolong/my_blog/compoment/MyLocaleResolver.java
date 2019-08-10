@@ -12,17 +12,18 @@ import java.util.Locale;
  * @date 2019/8/10  16:48
  * 区域信息解析器
  */
-public class MylocaleResolver implements LocaleResolver {
+public class MyLocaleResolver implements LocaleResolver {
     @Override
     public Locale resolveLocale(HttpServletRequest request) {
         String l = request.getParameter("l");
         Locale locale = Locale.getDefault();
     if (!StringUtils.isEmpty(l)){
         String[] spilt = l.split("_");
-        new Locale(spilt[0],spilt[1]);
+        locale = new Locale(spilt[0],spilt[1]);
     }
         return locale;
     }
+
 
     @Override
     public void setLocale(HttpServletRequest request, HttpServletResponse response, Locale locale) {

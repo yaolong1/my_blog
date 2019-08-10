@@ -1,6 +1,6 @@
 package com.yaolong.my_blog.config;
 
-import com.yaolong.my_blog.compoment.MylocaleResolver;
+import com.yaolong.my_blog.compoment.MyLocaleResolver;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.LocaleResolver;
@@ -40,8 +40,8 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
         return  adapter;
     }
 
-    @Bean("localeResolver")
+    @Bean()
     public LocaleResolver localeResolver(){
-        return new MylocaleResolver();
+        return new MyLocaleResolver();
     }
 }

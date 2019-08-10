@@ -4,40 +4,50 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
-
 </head>
 <body>
-<div align="center">
-    <form action="pushContent/save" method="post" id="form" enctype="multipart/form-data">
-        <label>标题</label><br><br>
-        <input type="text" name="title"/>
-        <label>内容</label><br><br>
-        <textarea name="content" id="content"></textarea>
-        <label>内容</label><br><br>
-        <select name="variety">
-            <option value="编程">编程</option>
-            <option value="生活">生活</option>
-            <option value="娱乐">娱乐</option>
-        </select>
-        <label>上传图片</label><br><br>
-        <input type="file" name="file"/><br><br>
-        <input type="submit" value="提交" id="submit"/>
-    </form>
-    <br>
-    <a href="pushContent/index">我的博客</a>
-    <a href="login">登录</a>
-</div>
+<form class="layui-form" method="post" name="content1" action="pushContent/save" enctype="multipart/form-data">
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">内容</label>
+        <div class="layui-input-block">
+            <label class="layui-form-label">标题</label>
+            <input type="text" name="title" required lay-verify="required" placeholder="请输入文章标题" autocomplete="off"
+                   class="layui-input">
+            <label class="layui-form-label">分类</label>
+            <select name="variety" lay-verify="">
+                <option value="">请选择一个类别</option>
+                <option value="编程">编程</option>
+                <option value="生活">生活</option>
+                <option value="娱乐">娱乐</option>
+            </select>
+                <textarea class="layui-textarea" name="content" lay-verify="content" id="content"></textarea>
+                <div align="center">
+                    <div class="layui-upload">
+                        <input type="file" class="layui-btn layui-btn-normal" name="file"/>
+                        <button type="submit" class="layui-btn" lay-submit="" lay-filter="formSubmit" id="submit">提交</button>
+                   </div>
+              </div>
+        </div>
+    </div>
+</form>
+
+<!--<form action="images/save" method="post" enctype="multipart/form-data">-->
+<!--<label>上传图片</label>-->
+<!--<input type="file" name="file"/>-->
+<!--<input type="submit" value="上传"/>-->
+<!--</form>-->
+
+<br>
+
+<a href="pushContent/index">我的博客</a>
+<a href="login">登录</a>
 <script th:src="@{/layui/layui.js}"></script>
 <script>
     layui.use(['form', 'layedit', 'upload'], function () {
         var form = layui.form
             , layedit = layui.layedit
             , upload = layui.upload
-    })
-
-
-
-
+    });
 </script>
 </body>
 </html>
