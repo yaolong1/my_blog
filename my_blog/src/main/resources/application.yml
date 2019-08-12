@@ -4,6 +4,8 @@ server:
   #配置项目访问名
   servlet:
     context-path: /yaolong
+  error:
+    include-exception: true
 spring:
   #配置数据库
   datasource:

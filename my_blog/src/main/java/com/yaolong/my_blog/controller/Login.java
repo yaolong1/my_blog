@@ -1,5 +1,6 @@
 package com.yaolong.my_blog.controller;
 
+import com.yaolong.my_blog.exception.UserNotExistException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +13,13 @@ import org.springframework.web.bind.annotation.*;
  */
 @Controller
 public class Login {
-    @RequestMapping("/register")
-    public String register(){
-        return "登录页面";
+    @RequestMapping("/hello")
+    @ResponseBody
+    public String register(@RequestParam("username") String username){
+        if (username.equals("aaa")){
+            throw  new UserNotExistException();
+        }
+        return "hello word";
     }
 
     @RequestMapping("/text")
